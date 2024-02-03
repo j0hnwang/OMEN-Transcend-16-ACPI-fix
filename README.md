@@ -13,6 +13,11 @@ After some digging, I managed to fix first 3 problems by overriding DSDT with a 
 
 This patch has been tested on Fedora 39 with kernel 6.5/6.6/6.7 and Ubuntu 24.04 with kernel 6.5.
 
+## Update 2024-02-02
+
+1. [Patch for F.12](./F.12_patch/dsdt.aml) can be found in F.12_patch dir. Usage is pretty much the same.
+2. Patch to fix builtin speakers can be found in [FixBuiltinSpeakers](./FixBuiltinSpeakers).
+
 ## HOWTO USE
 
 Compiled DSDT file can be found here [F.11 Rev.A_patch/dsdt.aml](./F.11%20Rev.A_patch/dsdt.aml). Download it to your local drive.
