@@ -1,0 +1,56 @@
+**Disclaimer:**
+These commands are based on assumptions of a certain setup in your system. If you have a different setup, some may need to be adapted.
+-System Assumptions-
+Linux Distro - Omarchy v3.0.2 (Linux 6.17.1-arch1-1 + Hyprland 0.51.1) -- As long as you're on Arch Linux this shouldn't matter much
+Bootloader - Limine -- essential if you follow the override/diagnosis steps to the letter. Any AI model should be able to help you adapt to other bootloaders if necessary
+
+----------------
+
+Arch Linux Package Pre-Requisites:
+sudo pacman -Syu --noconfirm acpica fwts-git gawk coreutils grep sed findutils
+
+----------------
+Clean System Checks
+----------------
+# Check for custom ACPI files in the standard mkinitcpio override paths
+ls /usr/lib/firmware/acpi/ /etc/initcpio/acpi_override/
+
+# List contents of the default initramfs and search for ACPI-related files
+lsinitcpio /boot/initramfs-linux.img | grep -i 'acpi/dsdt'
+
+# Search for the acpi parameter in the Limine boot config
+grep 'acpi:' /boot/EFI/limine/limine.conf
+
+# Check kernel log for override messages
+sudo dmesg | grep -i 'Table \ replaced'
+sudo dmesg | grep -i 'ACPI: DSDT.*Logical table override'
+
+----------------
+Fresh Baseline Extraction
+----------------
+# Extract acpi dump to dump file
+sudo acpidump > acpidump.<firmware version>.out 
+(the firmware version is ultimately unnecessary but helpful for organization. If you don't really care, you can just do "acpidump.out" and it will be the exact same. Just account for that when using later commands. For the purposes of this document, the example will be "acpidump.f27.out")
+
+# Verify file integrity - check that it is non-empty & generate checksum for future reference
+ls -l acpidump.f27.out
+sha256sum acpidump.f27.out > acpidump.f27.out.sha256
+
+# Extract indivdual tables - will output .dat files to a directory of your choosing. Smarter to put them in their own folder - in this case, "f27_tables"
+mkdir -p f27_tables
+cd f27_tables
+acpixtract -a ../acpidump.f27.out
+
+----------------
+Extraction Testing
+----------------
+This part is to help identify anything that could be going wrong in your firmware with some basic tests.
+**Please note**: HP Omens have numerous namespace collisions within their ACPI tables. This may/may not show up during some of the basic sanity tests. Most of the time, they will not show up until disassembly. ALSO - the collisions are intentional, and conditional statements exist that disable specific components if a non-Windows OS is detected. Fuck you @HP
+
+# Run all general ACPI tests on the original dump file (assumes you are running from the f27_tables directory) - Duplicate objects/namespaces may show up here, they did not for me.
+fwts --dumpfile=../acpidump.f27.out --acpitests
+
+# Attempt to load all tables; this is expected to fail (assumes you are in f27_tables dir).
+acpiexec *.dat
+
+
