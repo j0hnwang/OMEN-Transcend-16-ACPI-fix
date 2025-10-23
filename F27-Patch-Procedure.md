@@ -9,7 +9,7 @@ For all components to run successfully, you will need to modify the ACPI tables 
 The purpose of this document is to guide users to installing Linux on an HP Omen with modern(as of Oct. 2025) firmware. We will start at the very beginning (installing Arch Linux via bootable USB) and fix each issue as they arise.</br>
 I use [Omarchy](https://omarchy.org/), which is an Arch Linux distro with Hyprland compositor built in. So this guide will cover installing specifically Arch Linux with a Limine bootloader (recommended bootloader for use with Omarchy), though it can be easily adjusted to work with other Linux distros if you put in a little effort.</br>
 
-I apologize in advance if you are coming from a non-Arch distro or desire an Arch setup that is different from mine, as some of this may not work for you. I recommend feeding your issue, this repo, and whatever other online resources you can find into a GPT-5 or Gemini 2.5 Pro deep research prompt. It may help you adapt my solution to fit your needs.
+I apologize in advance if you are coming from a non-Arch distro or desire an Arch setup that is different from mine, as some of this may not work for you. I recommend feeding your issue, [this repo](https://github.com/no-hands-hand/OMEN-Transcend-16-ACPI-fix-f27) or [j0hnwang](https://github.com/j0hnwang/OMEN-Transcend-16-ACPI-fix)'s, and whatever other online resources you can find into a GPT-5 or Gemini 2.5 Pro deep research prompt. It may help you adapt my solution to fit your needs. I will add a list of sources at the bottom of this document.
 
 The main concern is the firmware version - **These patches are specific to the F.27 firmware**. I will **not** be providing a compiled .aml file, as this will just hurt many people since ACPI tables can change between laptop configurations, firmware versions, etc. I will be providing the unaltered DSDT.dsl file, and my patched DSDT.dsl file. You can use these files to locate the changed blocks and fix them, but I will also include a guide on which changes to make down below. I **highly recommend** doing research into ACPI in general so you know what you are doing, and are able to detect if your specific ACPI tables differ enough that following this guide will cause more problems than it solves.
 
@@ -671,3 +671,18 @@ echo "[*] Compiling dsdt.dsl..."
 
 sudo iasl -tc "$work/dsdt.dsl"
 ```
+
+# Reference Resources
+1. HP Support page for Omen Transcend 16 Firmware Pack F.26 (F.27 notes if available)
+2. Arch Wiki – [ACPI section](https://wiki.archlinux.org/title/ACPI)
+3. Kernel docs – [Documentation/admin-guide/acpi](https://www.kernel.org/doc/html/latest/admin-guide/acpi/index.html)
+4. Linux Kernel issue raised with findings: https://lore.kernel.org/all/6e56ec6c-60ad-48ea-b185-19d7064a53f2@free.fr/T/#u
+5. Issue raised regarding RealTek audio drivers: https://gitlab.archlinux.org/archlinux/packaging/packages/alsa-firmware/-/issues/1
+6. Installing arch-linux on a Microsoft Surface: https://chrismcleod.dev/blog/installing-arch-and-omarchy-on-a-microsoft-surface-laptop-studio/#:~:text=Step%202%3A%20Secure%20Boot
+7. Arch-Linux Omen 15(Intel variant) page: https://wiki.archlinux.org/title/HP_Omen_15-ek005na
+8. Arch-Linux Omen 16(AMD Variant) page: https://wiki.archlinux.org/title/HP_Omen_16-c0140AX
+9. Arch-Linux DSDT Page: https://wiki.archlinux.org/title/DSDT
+10. HP Article on Linux install for Omen Transcend 16: https://h30434.www3.hp.com/t5/Notebook-Hardware-and-Upgrade-Questions/Solved-installing-Linux-on-HP-Omen-Laptops/m-p/9025522/highlight/false#M739408
+11. HP Support Page for Omen Transcend 16: https://support.hp.com/us-en/product/details/omen-by-hp-transcend-16-inch-gaming-laptop-pc-16-u1000/2101915728
+12. AI Response - Extracting ACPI Tables with Duplicates: https://search.brave.com/search?q=extracting+acpi+tables+when+there+are+AE_ALREADY_EXISTS+errors&source=desktop&summary=1&conversation=e876288d9af0ee8fbd46
+13. UEFI Documentation Site: https://uefi.org/
