@@ -3,7 +3,7 @@
 ## ***DISCLAIMER***
 HP Omens are NOT meant to run Linux. HP has designed their firmware/components in such a way that some of them are explicitly disabled when running a non-Windows OS.</br>
 As such, proceeding with this guide is not supported by HP and I expect you will void any warranty available for your machine.</br>
-For all components to run successfully, you will need to modify the ACPI tables of your machine. **There is a significant chance you can mess something up**. There is also a significant chance that I messed something up, and it just isn't apparent yet. Components being powered in ways they were not meant to can cause unforseen issues.</br>
+For all components to run successfully, you will need to modify the ACPI tables of your machine. **There is a significant chance you can mess something up**. There is also a less significant chance that *I* messed something up, and it just isn't apparent yet. Components being powered in ways they were not meant to can cause unforseen issues (although I have not seen any yet).</br>
 **By proceeding with this guide, you acknowledge these risks and that you are making these changes of your own free will. I am not responsible if you mess up your machine.** 
 ## **Purpose**
 The purpose of this document is to guide users to installing Linux on an HP Omen with modern(as of Oct. 2025) firmware. We will start at the very beginning (installing Arch Linux via bootable USB) and fix each issue as they arise.</br>
