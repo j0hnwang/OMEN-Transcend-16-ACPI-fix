@@ -1,11 +1,12 @@
 # **HP Omen Transcend 16 Firmware vF.27 Full Patch Procedure, Changelog, & System Spec**
+#### Authored by [no-hands-hand](https://github.com/no-hands-hand/OMEN-Transcend-16-ACPI-fix-f27)
 ## ***DISCLAIMER***
 HP Omens are NOT meant to run Linux. HP has designed their firmware/components in such a way that some of them are explicitly disabled when running a non-Windows OS.</br>
 As such, proceeding with this guide is not supported by HP and I expect you will void any warranty available for your machine.</br>
 For all components to run successfully, you will need to modify the ACPI tables of your machine. **There is a significant chance you can mess something up**. There is also a significant chance that I messed something up, and it just isn't apparent yet. Components being powered in ways they were not meant to can cause unforseen issues.</br>
 **By proceeding with this guide, you acknowledge these risks and that you are making these changes of your own free will. I am not responsible if you mess up your machine.** 
 ## **Purpose**
-The purpose of this document/repository is to guide users to installing Linux on an HP Omen with modern(as of Oct. 2025) firmware. We will start at the very beginning (installing Arch Linux via bootable USB) and fix each issue as they arise.</br>
+The purpose of this document is to guide users to installing Linux on an HP Omen with modern(as of Oct. 2025) firmware. We will start at the very beginning (installing Arch Linux via bootable USB) and fix each issue as they arise.</br>
 I use [Omarchy](https://omarchy.org/), which is an Arch Linux distro with Hyprland compositor built in. So this guide will cover installing specifically Arch Linux with a Limine bootloader (recommended bootloader for use with Omarchy), though it can be easily adjusted to work with other Linux distros if you put in a little effort.</br>
 
 I apologize in advance if you are coming from a non-Arch distro or desire an Arch setup that is different from mine, as some of this may not work for you. I recommend feeding your issue, this repo, and whatever other online resources you can find into a GPT-5 or Gemini 2.5 Pro deep research prompt. It may help you adapt my solution to fit your needs.
