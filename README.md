@@ -1,6 +1,8 @@
-# OMEN-Transcend-16-ACPI-fix
+# OMEN-Transcend-16-ACPI-fix (F.11 + F.12)
 
 Fix buggy BIOS for OMEN Transcend Laptop 16-u0017TX (81M76PA).  
+
+**NOTE:** See [F27-Patch-Procedure.md](./F27-Patch-Procedure.md) for instructions on how to patch a Omen Transcend 16 on F.27 firmware
 
 OMEN 9 Transcend 16 BIOS version "F.11 Rev.A" comes with buggy ACPI config. Booting linux distros with kernel 6.0 and later versions always fail, this has been tested with Fedora 38/39 and Ubuntu 22.04/23.10/24.04. Appending kernel parameter "noapic" will partially fix booting problem, but more problems remain. Below is a list of symptoms caused by this problematic ACPI config.
 
@@ -17,6 +19,10 @@ This patch has been tested on Fedora 39 with kernel 6.5/6.6/6.7 and Ubuntu 24.04
 
 1. [Patch for F.12](./F.12_patch/dsdt.aml) can be found in F.12_patch dir. Usage is pretty much the same.
 2. Patch to fix builtin speakers can be found in [FixBuiltinSpeakers](./FixBuiltinSpeakers).
+
+## Update Oct. 22, 2025
+1. [Patch for F.27](./F.27_patched/dsdt.dsl) by [no-hands-hand](https://github.com/no-hands-hand/OMEN-Transcend-16-ACPI-fix-f27) can be found in `F.27_patched` dir. This is a cohesive fix, that resolves issues with touchpad, speakers, wake from s3 state sleep, and ***possibly*** fan scaling.</br>
+Instructions found in [F27-Patch-Procedure.md](./F27-Patch-Procedure.md).
 
 ## HOWTO USE
 

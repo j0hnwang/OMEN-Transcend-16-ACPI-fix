@@ -35,8 +35,8 @@ As of **Oct. 22, 2025** I have managed to get my system to this state:
 
 # Patch Guide
 ## **System Specs**
-- **Device**: HP Omen Transcend 16 - Nvidia variant
-- **Linux Distro**: Omarchy 3.1.1 (Arch Linux v6.17.3-arch2-1 + Hyprland v0.51.1)
+- **Device**: HP Omen Transcend 16-u1000 (Product: 8M1Q6AV)
+- **Linux Distro**: Omarchy 3.1.1 (Arch Linux v6.17.4-arch2-1 + Hyprland v0.51.1)
 - **Bootloader**: Limine
 - **Boot Image**: initramfs -> UKI
 - **HP Firmware Version**: F.27 Rev.A - Sept 8, 2025 (As listed on HP website - My actual system only displays as F.27)
@@ -195,8 +195,20 @@ MODULES=(i915 [existing modules] i2c_hid_acpi i2c_i801 intel_lpss_pci)
 ```
 Save the file and exit.
 
+### **Step 11** - Add i8042 kernel params (OPTIONAL(?))
+There were some kernel params that were recommended based on my Intel components and especially the ElanTech touchpad. You may benefit from adding them. I am not entirely sure if they are affecting anything, but they are present and my system is working so maybe consider adding them.</br>
 
-### **Step 11** - Rebuild initramfs image & Reboot
+Since we are rebuilding the image in the next step, we only need to add them to `/etc/default/limine`.</br>
+Run:
+```bash
+sudo nano /etc/default/limine
+```
+and add these params to the END of your `KERNEL_CMDLINE[default]=...` line:
+```bash
+KERNEL_CMDLINE[default]="[existing params] noapic pci=nobar i8042.reset i8042.nomux i8042.nopnp"
+```
+
+### **Step 12** - Rebuild initramfs image & Reboot
 Now we rebuild the boot image via UKI. Run:
 ```bash
 # Rebuild your build image (command dependent on setup)
@@ -209,7 +221,7 @@ sudo reboot
 ```
 
 
-### **Step 12** - Check the results
+### **Step 13** - Check the results
 I will be providing some short helper scripts for you to run in a different section, but that will allow you to check your `dmesg` logs for ACPI-related messages. You can also check yourself with the following commands:
 ```bash
 # Get any ACPI-related messages
@@ -229,7 +241,7 @@ lspci -k
 ```
 **IMPORTANT**: It is HIGHLY likely that you will not see any change yet, and your touchpad will probably not work yet. However, your speaker may be working, so feel free to test it out. IF, by some miracle, all of your components are now working, feel free to leave this guide and enjoy your machine. If not, proceed to the next step.
 
-### **Step 13** - Remove safety rails
+### **Step 14** - Remove safety rails
 I didn't talk much about what the `noapic` and `pci=nobar` kernel params do, but they are basically safety rails to prevent a kernel panic on boot due to improper routing in the ACPI files. Now that we have our override in place, we can remove them and try to boot again.</br>
 
 - **1)** First, assuming you were able to boot successfully after the acpi_override, **MAKE ANOTHER SNAPSHOT**. Once again, ensure it is available at your boot menu - if something wasn't done correctly, removing the `noapic` and `pci=nobar` will be tough without a way to get back into your system.
@@ -237,10 +249,10 @@ I didn't talk much about what the `noapic` and `pci=nobar` kernel params do, but
 - **3)** Run `sudo reboot`. If your computer hangs or you get kernel panics when you boot into your system after removing those params, something is wrong. I recommend seeking help from forums or a friendly AI.
 - **4)** If your computer successfully boots up, test out your touchpad. It ***should*** work, and if it does, great! If not, this is as far as I can take you. Feel free to open an issue on my Github but I am not an expert in ACPI or the Linux kernel, so the help I can give you is limited.
 
-### **Step 14** - Clean up
+### **Step 15** - Clean up
 If your computer was able to boot successfully without the `noapic` and `pci=nobar` kernel params, you should go ahead and remove them from `/etc/default/limine`. If you leave them there, they will be added the next time you rebuild your initramfs image.</br>
 
-### **Step 15** - Pay it forward please!
+### **Step 16** - Pay it forward please!
 Hopefully this was able to help you get Linux working properly on your HP Omen. The only existing patches when I started this were for F.11 and F.12 firmware versions, and I had to pretty much muddle my way through a hundred different dead-end solutions before I got to this point.</br>
 If you are visiting this repo on a firmware version that releases **after F.27**, please fork this repo and do your best to apply the patches to your version. If they work, share the resulting files and a README on any relevant differences, and open a PR or just publish it yourself. Linux is community-driven; solutions to issues like the one with the HP Omen come from users like you. Share this repo and any fixes you make! 
 
