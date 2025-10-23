@@ -673,16 +673,15 @@ sudo iasl -tc "$work/dsdt.dsl"
 ```
 
 # Reference Resources
-1. HP Support page for Omen Transcend 16 Firmware Pack F.26 (F.27 notes if available)
-2. Arch Wiki – [ACPI section](https://wiki.archlinux.org/title/ACPI)
-3. Kernel docs – [Documentation/admin-guide/acpi](https://www.kernel.org/doc/html/latest/admin-guide/acpi/index.html)
-4. Linux Kernel issue raised with findings: https://lore.kernel.org/all/6e56ec6c-60ad-48ea-b185-19d7064a53f2@free.fr/T/#u
-5. Issue raised regarding RealTek audio drivers: https://gitlab.archlinux.org/archlinux/packaging/packages/alsa-firmware/-/issues/1
-6. Installing arch-linux on a Microsoft Surface: https://chrismcleod.dev/blog/installing-arch-and-omarchy-on-a-microsoft-surface-laptop-studio/#:~:text=Step%202%3A%20Secure%20Boot
-7. Arch-Linux Omen 15(Intel variant) page: https://wiki.archlinux.org/title/HP_Omen_15-ek005na
-8. Arch-Linux Omen 16(AMD Variant) page: https://wiki.archlinux.org/title/HP_Omen_16-c0140AX
-9. Arch-Linux DSDT Page: https://wiki.archlinux.org/title/DSDT
-10. HP Article on Linux install for Omen Transcend 16: https://h30434.www3.hp.com/t5/Notebook-Hardware-and-Upgrade-Questions/Solved-installing-Linux-on-HP-Omen-Laptops/m-p/9025522/highlight/false#M739408
-11. HP Support Page for Omen Transcend 16: https://support.hp.com/us-en/product/details/omen-by-hp-transcend-16-inch-gaming-laptop-pc-16-u1000/2101915728
-12. AI Response - Extracting ACPI Tables with Duplicates: https://search.brave.com/search?q=extracting+acpi+tables+when+there+are+AE_ALREADY_EXISTS+errors&source=desktop&summary=1&conversation=e876288d9af0ee8fbd46
-13. UEFI Documentation Site: https://uefi.org/
+1. Arch Wiki – [ACPI section](https://wiki.archlinux.org/title/ACPI)
+2. Kernel docs – [Documentation/admin-guide/acpi](https://www.kernel.org/doc/html/latest/admin-guide/acpi/index.html)
+3. Linux Kernel issue raised with findings: https://lore.kernel.org/all/6e56ec6c-60ad-48ea-b185-19d7064a53f2@free.fr/T/#u
+4. Issue raised regarding RealTek audio drivers: https://gitlab.archlinux.org/archlinux/packaging/packages/alsa-firmware/-/issues/1
+5. Installing arch-linux on a Microsoft Surface: https://chrismcleod.dev/blog/installing-arch-and-omarchy-on-a-microsoft-surface-laptop-studio/#:~:text=Step%202%3A%20Secure%20Boot
+6. Arch-Linux Omen 15(Intel variant) page: https://wiki.archlinux.org/title/HP_Omen_15-ek005na
+7. Arch-Linux Omen 16(AMD Variant) page: https://wiki.archlinux.org/title/HP_Omen_16-c0140AX
+8. Arch-Linux DSDT Page: https://wiki.archlinux.org/title/DSDT
+9. HP Article on Linux install for Omen Transcend 16: https://h30434.www3.hp.com/t5/Notebook-Hardware-and-Upgrade-Questions/Solved-installing-Linux-on-HP-Omen-Laptops/m-p/9025522/highlight/false#M739408
+10. HP Support Page for Omen Transcend 16: https://support.hp.com/us-en/product/details/omen-by-hp-transcend-16-inch-gaming-laptop-pc-16-u1000/2101915728
+11. AI Response - Extracting ACPI Tables with Duplicates: https://search.brave.com/search?q=extracting+acpi+tables+when+there+are+AE_ALREADY_EXISTS+errors&source=desktop&summary=1&conversation=e876288d9af0ee8fbd46
+12. UEFI Documentation Site: https://uefi.org/
