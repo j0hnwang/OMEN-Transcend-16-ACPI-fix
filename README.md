@@ -50,6 +50,43 @@ Following procedure is for Fedora 39, use on Ubuntu is pretty much the same exce
 
 3. Reboot.
 
+### Modify /etc/grub.d/10_linux (More Advanced for kali linux F.35)
+1. Edit `/etc/grub.d/10_custom` with your favourite text editor,
+# Modify the linux_entry() function:
+# Find this section (around where you see "Loading Linux"):
+`bash  if [ x"$quiet_boot" = x0 ] || [ x"$type" != xsimple ]; then
+    message="$(gettext_printf "Loading Linux %s ..." ${version})"
+    sed "s/^/$submenu_indentation/" << EOF
+        echo    '$(echo "$message" | grub_quote)'
+EOF
+  fi
+  sed "s/^/$submenu_indentation/" << EOF
+        linux   ${rel_dirname}/${basename} root=${linux_root_device_thisversion}>
+EOF`
+
+# Add the DSDT loading section between the echo and linux commands:
+`bash  if [ x"$quiet_boot" = x0 ] || [ x"$type" != xsimple ]; then
+    message="$(gettext_printf "Loading Linux %s ..." ${version})"
+    sed "s/^/$submenu_indentation/" << EOF
+        echo    '$(echo "$message" | grub_quote)'
+EOF
+  fi
+  sed "s/^/$submenu_indentation/" << EOF
+        echo    'Loading custom DSDT...'
+        acpi    /boot/dsdt.aml
+EOF
+  sed "s/^/$submenu_indentation/" << EOF
+        linux   ${rel_dirname}/${basename} root=${linux_root_device_thisversion}>
+EOF`
+
+# Save and exit the editor
+
+2. update grub config.
+   `sudo update-grub`
+
+3. reboot
+
+  
 ## Problems remaining
 
 1. Built-in speakers still have no sound.  
