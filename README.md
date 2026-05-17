@@ -21,8 +21,15 @@ This patch has been tested on Fedora 39 with kernel 6.5/6.6/6.7 and Ubuntu 24.04
 2. Patch to fix builtin speakers can be found in [FixBuiltinSpeakers](./FixBuiltinSpeakers).
 
 ## Update Oct. 22, 2025
+
 1. [Patch for F.27](./F.27_patched/dsdt.dsl) by [no-hands-hand](https://github.com/no-hands-hand/OMEN-Transcend-16-ACPI-fix-f27) can be found in `F.27_patched` dir. This is a cohesive fix, that resolves issues with touchpad, speakers, wake from s3 state sleep, and ***possibly*** fan scaling.</br>
 Instructions found in [F27-Patch-Procedure.md](./F27-Patch-Procedure.md).
+
+## Update 2026-05-17
+
+I have been using F.12_patch/dsdt.aml for a long time with Ubuntu 22.04, through out firmware version F.12, F.25 and most recently F.39. It still works. I suppose it would work with other distros.  
+Though patched F.27 and F.28 have been merged, I haven't tried them personally. Guess I'm just too lazy. ;)  
+Recent kernel releases have included speaker driver, but mute indicator on F5 button is not working as it would with my kernel patch. My patch to ubuntu kernel team was rejected and I haven't tried since. If anyone is familiar with ubuntu kernel patch procedure, please submit. Thanks.
 
 ## HOWTO USE
 
@@ -46,7 +53,7 @@ Following procedure is for Fedora 39, use on Ubuntu is pretty much the same exce
 `acpi /dsdt.aml`
 
 2. Update grub config.  
-`sudo grub2-mkconfig -o /boot/grub2/grub.cfg`
+`sudo update-grub`
 
 3. Reboot.
 
